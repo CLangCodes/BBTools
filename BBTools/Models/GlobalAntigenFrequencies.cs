@@ -2,16 +2,16 @@
 {
     public class GlobalAntigenFrequencies
     {
-        public decimal A { get; set; } = .43M;
-        public decimal B { get; set; } = .09M;
-        public decimal AB { get; set; } = .04M;
-        public decimal O { get; set; } = .44M;
+        //public decimal A { get; set; } = .43M;
+        //public decimal B { get; set; } = .09M;
+        //public decimal AB { get; set; } = .04M;
+        //public decimal O { get; set; } = .44M;
         public decimal D { get; set; } = .65M;
         public decimal C { get; set; } = .68M;
-        public decimal Cw { get; set; } = .02M;
-        public decimal E { get; set; } = .29M;
         public decimal LittleC { get; set; } = .80M;
+        public decimal E { get; set; } = .29M;
         public decimal LittleE { get; set; } = .98M;
+        public decimal Cw { get; set; } = .02M;
         public decimal Kell { get; set; } = .09M;
         public decimal Cellano { get; set; } = .996M;
         public decimal Kpa { get; set; } = .02M;
