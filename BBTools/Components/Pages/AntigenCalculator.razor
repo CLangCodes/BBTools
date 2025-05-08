@@ -15,7 +15,7 @@
 
 <div class="mb-3">
     <label>Units Required:</label>
-    <input type="number" class="form-control" @bind="UnitsRequired" @bind:after="Calculate" min="1" />
+    <input type="number" class="form-control" @bind="UnitsRequired" min="1" />
 </div>
 
 <div class="antigen-grid-container">
@@ -74,21 +74,6 @@ else if (ShowWarning)
                 });
         }
     }  
-
-    private void OnUnitsChanged(ChangeEventArgs e)
-    {
-        if (UnitsRequired < 1)
-            UnitsRequired = 1;
-
-        Calculate();
-        StateHasChanged();
-    }
-
-    private void OnAntigenToggled(AntigenSelection antigen, ChangeEventArgs e)
-    {
-        antigen.IsSelected = (bool)e.Value!;
-        Calculate();
-    }
 
     private void Calculate()
     {
