@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useCallback } from 'react';
+import './App.css';
 
 function AntigenCalculator() {
     const [unitsRequired, setUnitsRequired] = useState(1);
@@ -10,13 +11,15 @@ function AntigenCalculator() {
     useEffect(() => {
         const getAntigenFrequencies = async () => {
             try {
-                const res = await fetch("https://localhost:7057/api/BBTools/frequencies"); 
+                const res = await fetch("/api/BBTools/frequencies"); 
                 const data = await res.json();
-                const antigenArray = Object.entries(data).map(([name, frequency]) => ({
-                    name,
-                    frequency,
-                    isSelected: false,
-                }));
+                const antigenArray = Object.entries(data)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(([name, frequency]) => ({
+                        name,
+                        frequency,
+                        isSelected: false,
+                    }));
                 setAntigens(antigenArray);
             } catch (err) {
                 console.error("Failed to load antigen frequencies", err);
@@ -29,11 +32,12 @@ function AntigenCalculator() {
         const newAntigens = [...antigens];
         newAntigens[index].isSelected = !newAntigens[index].isSelected;
         setAntigens(newAntigens);
+        calculate(newAntigens);
     };
 
-    const calculate = useCallback(() => {
+    const calculate = useCallback((currentAntigens = antigens) => {
         try {
-            const selected = antigens.filter(a => a.isSelected);
+            const selected = currentAntigens.filter(a => a.isSelected);
             if (selected.length === 0) {
                 setCalculatedUnits(null);
                 setShowWarning(false);
@@ -62,7 +66,7 @@ function AntigenCalculator() {
     }, [calculate]);
 
     return (
-        <div>
+        <div className="container">
             <h3>Antigen Screener Helper Tool</h3>
             <p>
                 In order to obtain the required number of antigen negative Leukoreduced Red Cells matching a patient's phenotype,
@@ -72,18 +76,34 @@ function AntigenCalculator() {
                 authority before using this tool in your laboratory.
             </p>
 
-            <h5 className="antigen-header">Select Antigens</h5>
+            {calculatedUnits !== null ? (
+                <p className="mt-3">
+                    You would need to screen <strong>{calculatedUnits}</strong> units to find <strong>{unitsRequired}</strong> antigen negative LRC
+                    {unitsRequired > 1 ? 's' : ''}.
+                </p>
+            ) : showWarning ? (
+                <p className="mt-3 text-danger">
+                    ⚠️ No feasible match found — selected antigens are too rare to calculate a reliable screening count.
+                </p>
+            ) : null}
 
-            <div className="mb-3">
-                <label>Units Required:</label>
+            <div className="units-input-container">
+                <label htmlFor="units-required">Units Required:</label>
                 <input
+                    id="units-required"
                     type="number"
                     className="form-control"
                     value={unitsRequired}
                     min="1"
-                    onChange={(e) => setUnitsRequired(Math.max(1, parseInt(e.target.value || 1)))}
+                    max="999"
+                    onChange={(e) => {
+                        const value = Math.min(999, Math.max(1, parseInt(e.target.value || 1)));
+                        setUnitsRequired(value);
+                    }}
                 />
             </div>
+
+            <h5 className="antigen-header">Select Antigens</h5>
 
             <div className="antigen-grid-container">
                 {antigens.map((antigen, index) => (
@@ -101,16 +121,6 @@ function AntigenCalculator() {
                 ))}
             </div>
 
-            {calculatedUnits !== null ? (
-                <p className="mt-3">
-                    You would need to screen <strong>{calculatedUnits}</strong> units to find <strong>{unitsRequired}</strong> antigen negative LRC
-                    {unitsRequired > 1 ? 's' : ''}.
-                </p>
-            ) : showWarning ? (
-                <p className="mt-3 text-danger">
-                    ⚠️ No feasible match found — selected antigens are too rare to calculate a reliable screening count.
-                </p>
-            ) : null}
         </div>
     );
 }

@@ -9,3 +9,109 @@ th, td {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+.units-input-container {
+    max-width: 200px;
+    margin: 1rem auto;
+    text-align: left;
+}
+
+.units-input-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #495057;
+    font-weight: 500;
+}
+
+.units-input-container input[type="number"] {
+    width: 100%;
+    text-align: center;
+}
+
+/* Remove spinner buttons from number input */
+.units-input-container input[type="number"]::-webkit-inner-spin-button,
+.units-input-container input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.units-input-container input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.antigen-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.antigen-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.antigen-card label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    color: #212529;
+}
+
+.antigen-name {
+    font-weight: 500;
+    color: #212529;
+    font-size: 0.875rem;
+}
+
+.antigen-frequency {
+    color: #6c757d;
+    font-size: 0.75rem;
+}
+
+.antigen-header {
+    margin: 1rem 0;
+    color: #495057;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
