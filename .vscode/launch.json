@@ -8,26 +8,19 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "start-vite-and-build",
+            "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/BBTools.WebUI/BBTools.WebUI.Server/bin/Debug/net9.0/BBTools.WebUI.Server.dll",
             "args": [],
             "cwd": "${workspaceFolder}/BBTools.WebUI/BBTools.WebUI.Server",
             "stopAtEntry": false,
-            "postDebugTask": "open-browser",
-            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "https://localhost:7057;http://localhost:5154",
-                "DEV_SERVER_PORT": "55851"
+                "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
-            },
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "Now listening on:",
-                "uriFormat": "https://localhost:55851"
             }
         },
         {

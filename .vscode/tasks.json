@@ -2,14 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "start-vite-and-build",
-            "dependsOn": ["build", "start-backend", "start-vite"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
             "label": "build",
             "command": "dotnet",
             "type": "process",
@@ -20,66 +12,6 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "start-backend",
-            "type": "process",
-            "command": "dotnet",
-            "args": [
-                "run",
-                "--project",
-                "${workspaceFolder}/BBTools.WebUI/BBTools.WebUI.Server/BBTools.WebUI.Server.csproj"
-            ],
-            "isBackground": true,
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": {
-                "owner": "custom",
-                "pattern": {
-                    "regexp": "^$"
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "Now listening on:",
-                    "endsPattern": "Application started"
-                }
-            }
-        },
-        {
-            "label": "start-vite",
-            "type": "process",
-            "command": "npm",
-            "args": ["run", "dev"],
-            "options": {
-                "cwd": "${workspaceFolder}/BBTools.WebUI/bbtools.webui.client"
-            },
-            "isBackground": true,
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": {
-                "owner": "custom",
-                "pattern": {
-                    "regexp": "^$"
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "VITE v\\d+\\.\\d+\\.\\d+\\s+ready",
-                    "endsPattern": "➜\\s+Local:"
-                }
-            }
-        },
-        {
-            "label": "open-browser",
-            "type": "shell",
-            "command": "start",
-            "args": ["https://localhost:55851"],
-            "windows": {
-                "command": "explorer"
-            }
         }
     ]
 }
