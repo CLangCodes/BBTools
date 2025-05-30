@@ -1,4 +1,4 @@
-﻿namespace BBTools.Domain.Models;
+﻿namespace BBTools.Domain.Models
 {
     public class PanelCell
     {
