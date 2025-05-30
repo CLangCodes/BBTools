@@ -1,6 +1,0 @@
-@BBTools.Presentation.Server_HostAddress = http://localhost:5149
-
-GET {{BBTools.Presentation.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
