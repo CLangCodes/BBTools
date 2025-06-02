@@ -1,0 +1,52 @@
+.navbar {
+    padding: 0.5rem 1rem;
+    background-color: rgb(12, 48, 77);
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+@media (min-width: 576px) {
+    .navbar-expand-sm .navbar-collapse {
+        display: flex !important;
+    }
+    
+    .navbar-expand-sm .navbar-toggler {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-collapse {
+        padding: 1rem 0;
+    }
+    
+    .navbar-collapse.show {
+        display: block;
+    }
+} 
