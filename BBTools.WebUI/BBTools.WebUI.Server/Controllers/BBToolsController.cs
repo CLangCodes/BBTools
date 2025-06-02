@@ -1,4 +1,5 @@
 ﻿using BBTools.Application.Interfaces;
+using BBTools.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,13 +12,6 @@ namespace BBTools.WebUI.Server.Controllers
         private readonly IAntigenCalculatorService _antigenCalculatorService = antigenCalculatorService;
         private readonly ILogger<BBToolsController> _logger = logger;
 
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            _logger.LogInformation("Test endpoint called");
-            return Ok(new { message = "API is working" });
-        }
-
         [HttpGet("frequencies")]
         public async Task<ActionResult<Dictionary<string, decimal>>> GetFrequencies()
         {
@@ -25,13 +19,30 @@ namespace BBTools.WebUI.Server.Controllers
             {
                 _logger.LogInformation("Getting antigen frequencies");
                 var result = await _antigenCalculatorService.GetAntigenFrequenciesAsync();
-                _logger.LogInformation("Retrieved {Count} antigen frequencies", result.Count);
+                _logger.LogInformation($"Retrieved {result.Count} antigen frequencies");
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error getting antigen frequencies");
                 return StatusCode(500, "An error occurred while retrieving antigen frequencies");
+            }
+        }
+
+        [HttpPost("calculateUnits")]
+        public async Task<ActionResult<int>> GetUnits(AntigenSelection[] antigenSelections, int unitsReq)
+        {
+            try
+            {
+                _logger.LogInformation("Calculating screening target quantity");
+                var result = await _antigenCalculatorService.GetAntigenFrequenciesAsync();
+                _logger.LogInformation($"Calculated {result.Count} to obtain required amount.");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting screening target quantity");
+                return StatusCode(500, "An error occurred while retrieving screening target quantity");
             }
         }
     }

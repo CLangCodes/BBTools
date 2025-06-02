@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BBTools.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace BBTools.Application.Interfaces
     public interface IAntigenCalculatorService
     {
         Task<Dictionary<string, decimal>> GetAntigenFrequenciesAsync();
-
+        int? CalculateUnitScreening(AntigenSelection[] antigenSelections, int unitsReq); 
     }
 }

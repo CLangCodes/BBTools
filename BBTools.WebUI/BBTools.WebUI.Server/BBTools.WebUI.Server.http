@@ -4,3 +4,8 @@ GET {{BBTools.WebUI.Server_HostAddress}}/api/BBTools/frequencies/
 Accept: application/json
 
 ###
+
+GET {{BBTools.WebUI.Server_HostAddress}}/api/BBTools/calculateUnits/
+Accept: application/json
+
+###
