@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavMenu.css';
 
 function NavMenu() {
@@ -12,7 +12,7 @@ function NavMenu() {
     return (
         <nav className="navbar">
             <div className="container">
-                <Link className="navbar-brand" to="/">BBTools</Link>
+                <NavLink className="navbar-brand" to="/">BBTools</NavLink>
                 <button 
                     className="navbar-toggler" 
                     type="button" 
@@ -24,10 +24,10 @@ function NavMenu() {
                 <div className={`navbar-collapse collapse d-sm-inline-flex justify-content-between ${isExpanded ? 'show' : ''}`}>
                     <ul className="navbar-nav flex-grow-1">
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/">Home</Link>
+                            <NavLink className="nav-link" to="/" end>Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/antigen-calculator">Antigen Calculator</Link>
+                            <NavLink className="nav-link" to="/antigen-calculator">Antigen Calculator</NavLink>
                         </li>
                     </ul>
                 </div>
