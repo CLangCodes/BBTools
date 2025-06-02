@@ -16,6 +16,8 @@
     text-decoration: none;
     margin: 0;
     padding: 0;
+    display: inline-flex;
+    align-items: center;
 }
 
 .navbar-brand.collapsed {
@@ -133,6 +135,16 @@
 .nav-collapse-toggle i {
     font-size: 1rem;
     line-height: 1;
+}
+
+.nav-brand-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-brand-item .nav-collapse-toggle {
+    margin-right: 0.5rem;
 }
 
 @media (min-width: 576px) {

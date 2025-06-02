@@ -18,20 +18,20 @@ function NavMenu() {
     return (
         <nav className="navbar">
             <div className="container">
-                <div className="navbar-brand-container">
-                    <button 
-                        className="nav-collapse-toggle" 
-                        onClick={toggleCollapse}
-                        aria-label="Toggle navigation rail"
-                    >
-                        <i className={`bi bi-chevron-${isCollapsed ? 'right' : 'left'}`}></i>
-                    </button>
-                    <NavLink className={`navbar-brand ${isCollapsed ? 'collapsed' : ''}`} to="/">
-                        {!isCollapsed && "BBTools"}
-                    </NavLink>
-                </div>
                 <div className={`navbar-collapse collapse d-sm-inline-flex justify-content-between ${isExpanded ? 'show' : ''}`}>
                     <ul className="navbar-nav flex-grow-1">
+                        <li className="nav-item nav-brand-item">
+                            <button 
+                                className="nav-collapse-toggle" 
+                                onClick={toggleCollapse}
+                                aria-label="Toggle navigation rail"
+                            >
+                                <i className={`bi bi-chevron-${isCollapsed ? 'right' : 'left'}`}></i>
+                            </button>
+                            <NavLink className={`navbar-brand ${isCollapsed ? 'collapsed' : ''}`} to="/">
+                                {!isCollapsed && "BBTools"}
+                            </NavLink>
+                        </li>
                         <li className="nav-item">
                             <NavLink className={`nav-link ${isCollapsed ? 'collapsed' : ''}`} to="/" end>
                                 <i className="bi bi-house-door"></i>
