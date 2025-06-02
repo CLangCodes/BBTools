@@ -35,7 +35,7 @@ function AntigenCalculator() {
         calculate(newAntigens);
     };
 
-    const calculate = useCallback((currentAntigens = antigens) => {
+    const calculate = useCallback(async (currentAntigens = antigens) => {
         try {
             const selected = currentAntigens.filter(a => a.isSelected);
             if (selected.length === 0) {
@@ -44,16 +44,28 @@ function AntigenCalculator() {
                 return;
             }
 
-            const p = selected.reduce((acc, a) => acc * (1 - a.frequency), 1.0);
+            const response = await fetch(`/api/BBTools/calculateUnits?unitsReq=${unitsRequired}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(selected)
+            });
 
-            if (p <= 0) {
+            if (!response.ok) {
+                throw new Error('Failed to calculate units');
+            }
+
+            const result = await response.json();
+            
+            if (result === null) {
                 setCalculatedUnits(null);
                 setShowWarning(true);
                 return;
             }
 
             setShowWarning(false);
-            setCalculatedUnits(Math.ceil(unitsRequired / p));
+            setCalculatedUnits(result);
         } catch (error) {
             console.error("Error calculating screening units", error);
             setCalculatedUnits(null);

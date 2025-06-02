@@ -30,19 +30,19 @@ namespace BBTools.WebUI.Server.Controllers
         }
 
         [HttpPost("calculateUnits")]
-        public async Task<ActionResult<int>> GetUnits(AntigenSelection[] antigenSelections, int unitsReq)
+        public ActionResult<int?> CalculateUnits([FromBody] AntigenSelection[] antigenSelections, [FromQuery] int unitsReq)
         {
             try
             {
                 _logger.LogInformation("Calculating screening target quantity");
-                var result = await _antigenCalculatorService.GetAntigenFrequenciesAsync();
-                _logger.LogInformation($"Calculated {result.Count} to obtain required amount.");
+                var result = _antigenCalculatorService.CalculateUnitScreening(antigenSelections, unitsReq);
+                _logger.LogInformation($"Calculated screening target quantity: {result}");
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error getting screening target quantity");
-                return StatusCode(500, "An error occurred while retrieving screening target quantity");
+                _logger.LogError(ex, "Error calculating screening target quantity");
+                return StatusCode(500, "An error occurred while calculating screening target quantity");
             }
         }
     }
