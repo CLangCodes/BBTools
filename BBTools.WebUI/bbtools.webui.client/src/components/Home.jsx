@@ -21,27 +21,23 @@ const FeatureCard = styled(Paper)(({ theme }) => ({
 const Home = () => {
   return (
     <Box>
-        <h1>Welcome to BBTools</h1>
-        <p>Select a tool from the navigation menu to get started.</p>
-      {/* Hero Section */}
-      {/* <HeroSection>
+      <HeroSection >
         <Container maxWidth="md">
-          <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to BBTools
-          </Typography>
-          <Typography variant="h5" component="h2" gutterBottom>
-            Your All-in-One Development Solution
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            sx={{ mt: 4 }}
-          >
-            Get Started
-          </Button>
+          <h1>Welcome to BBTools</h1>
+          
+          <FeatureCard elevation={3}>
+            <p>Select a tool from the navigation menu to get started.</p>
+          </FeatureCard>
         </Container>
-      </HeroSection> */}
+      </HeroSection>
+
+      <Container maxWidth="lg" >
+      <Grid container spacing={4} sx={{ mt: 2 }}>
+        <Grid item xs={12} md={4}>
+          
+        </Grid>
+      </Grid>
+      </Container>
 
       {/* Features Section */}
       {/* <Container maxWidth="lg" sx={{ py: 8 }}>

@@ -16,7 +16,7 @@ function NavMenu() {
     };
 
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${isCollapsed ? 'collapsed' : 'expanded'}`}>
             <div className="container">
                 <div className={`navbar-collapse collapse d-sm-inline-flex justify-content-between ${isExpanded ? 'show' : ''}`}>
                     <ul className="navbar-nav flex-grow-1">
