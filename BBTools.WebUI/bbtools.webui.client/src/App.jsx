@@ -4,6 +4,7 @@ import NavMenu from './components/NavMenu';
 import AntigenCalculator from './components/AntigenCalculator';
 import Home from './components/Home';
 import './App.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 function App() {
     return (
