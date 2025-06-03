@@ -1,6 +1,7 @@
 using BBTools.Application.Interfaces;
 using BBTools.Domain.Interfaces;
 using BBTools.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BBTools.Application.Services
 {

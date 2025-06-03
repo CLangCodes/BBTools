@@ -10,6 +10,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IAntigenCalculatorService, AntigenCalculatorService>();
         services.AddScoped<IAntigenService, AntigenService>();
+        services.AddScoped<IAntigenSystemService, AntigenSystemService>();
         // Register application services here
         // Example: services.AddScoped<IYourService, YourService>();
 

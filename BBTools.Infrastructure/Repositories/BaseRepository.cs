@@ -30,7 +30,15 @@ namespace BBTools.Infrastructure.Repositories
         public virtual async Task<IEnumerable<T>> GetAllAsync<T>() where T : class
         {
             using var dbContext = _dbContextFactory.CreateDbContext();
-            return await dbContext.Set<T>().ToListAsync();
+            var query = dbContext.Set<T>().AsQueryable();
+
+            // Include navigation properties based on the entity type
+            if (typeof(T) == typeof(BBTools.Domain.Models.Antigen))
+            {
+                query = query.Include("AntigenSystem");
+            }
+
+            return await query.ToListAsync();
         }
 
         public virtual async Task<IEnumerable<T>> GetWhereAsync<T>(Expression<Func<T, bool>> predicate) where T : class

@@ -4,8 +4,8 @@ namespace BBTools.Domain.Models
     {
         public int SystemId { get; set; }
         public string SystemName { get; set; } = string.Empty;
-        public string[] Genes { get; set; } = [];
-        public Antigen[] Antigens { get; set; } = [];
-        public string[] PhenoTypes { get; set; } = [];
+        public string[] Genes { get; set; } = Array.Empty<string>();
+        public Antigen[] Antigens { get; set; } = Array.Empty<Antigen>();
+        public string[] PhenoTypes { get; set; } = Array.Empty<string>();
     }
 }

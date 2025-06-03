@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BBTools.Infrastructure.Migrations
 {
     [DbContext(typeof(BBContext))]
-    [Migration("20250603214747_FreshStart")]
-    partial class FreshStart
+    [Migration("20250603230625_UpdateJsonConversion")]
+    partial class UpdateJsonConversion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,16 +51,13 @@ namespace BBTools.Infrastructure.Migrations
             modelBuilder.Entity("BBTools.Domain.Models.AntigenSystem", b =>
                 {
                     b.Property<int>("SystemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SystemId"));
-
-                    b.PrimitiveCollection<string>("Genes")
+                    b.Property<string>("Genes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("PhenoTypes")
+                    b.Property<string>("PhenoTypes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -183,17 +180,12 @@ namespace BBTools.Infrastructure.Migrations
             modelBuilder.Entity("BBTools.Domain.Models.Antigen", b =>
                 {
                     b.HasOne("BBTools.Domain.Models.AntigenSystem", "AntigenSystem")
-                        .WithMany("Antigens")
+                        .WithMany()
                         .HasForeignKey("SystemId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AntigenSystem");
-                });
-
-            modelBuilder.Entity("BBTools.Domain.Models.AntigenSystem", b =>
-                {
-                    b.Navigation("Antigens");
                 });
 #pragma warning restore 612, 618
         }

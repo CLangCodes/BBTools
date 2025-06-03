@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BBTools.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class FreshStart : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace BBTools.Infrastructure.Migrations
                 name: "AntigenSystems",
                 columns: table => new
                 {
-                    SystemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SystemId = table.Column<int>(type: "int", nullable: false),
                     SystemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhenoTypes = table.Column<string>(type: "nvarchar(max)", nullable: false)

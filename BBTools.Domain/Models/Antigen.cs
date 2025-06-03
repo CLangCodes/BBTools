@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BBTools.Domain.Models
 {
     public class Antigen
@@ -8,6 +10,7 @@ namespace BBTools.Domain.Models
         public string SystemName { get; set; } = string.Empty;
 
         // Navigation property
+        [JsonIgnore]
         public AntigenSystem? AntigenSystem { get; set; }
     }
 }

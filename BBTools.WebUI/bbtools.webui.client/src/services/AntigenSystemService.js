@@ -1,25 +1,22 @@
-const API_URL = '/api/Antigen';
+const API_URL = '/api/AntigenSystem';
 
-export const AntigenService = {
+export const AntigenSystemService = {
     async getAll() {
         try {
             const response = await fetch(API_URL);
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to fetch antigens: ${errorText}`);
+                throw new Error(`Failed to fetch antigen systems: ${errorText}`);
             }
             const data = await response.json();
-            console.log('AntigenService.getAll raw response:', response);
-            console.log('AntigenService.getAll parsed data:', data);
-            if (data && data.length > 0) {
-                console.log('First antigen in service:', {
-                    isbtNumber: data[0].isbtNumber,
-                    name: data[0].name,
-                    systemId: data[0].systemId,
-                    systemName: data[0].systemName,
-                    antigenSystem: data[0].antigenSystem
-                });
-            }
+            console.log('AntigenSystemService.getAll raw response:', response);
+            console.log('AntigenSystemService.getAll parsed data:', data);
+            console.log('First system properties:', data[0] ? {
+                systemId: data[0].systemId,
+                systemName: data[0].systemName,
+                genes: data[0].genes,
+                phenoTypes: data[0].phenoTypes
+            } : 'No data');
             return data;
         } catch (error) {
             console.error('Error in getAll:', error);
@@ -27,12 +24,12 @@ export const AntigenService = {
         }
     },
 
-    async getById(isbtNumber) {
+    async getById(id) {
         try {
-            const response = await fetch(`${API_URL}/${isbtNumber}`);
+            const response = await fetch(`${API_URL}/${id}`);
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to fetch antigen: ${errorText}`);
+                throw new Error(`Failed to fetch antigen system: ${errorText}`);
             }
             return response.json();
         } catch (error) {
@@ -41,18 +38,18 @@ export const AntigenService = {
         }
     },
 
-    async create(antigen) {
+    async create(system) {
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(antigen),
+                body: JSON.stringify(system),
             });
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to create antigen: ${errorText}`);
+                throw new Error(`Failed to create antigen system: ${errorText}`);
             }
             return response.json();
         } catch (error) {
@@ -61,18 +58,18 @@ export const AntigenService = {
         }
     },
 
-    async update(isbtNumber, antigen) {
+    async update(id, system) {
         try {
-            const response = await fetch(`${API_URL}/${isbtNumber}`, {
+            const response = await fetch(`${API_URL}/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(antigen),
+                body: JSON.stringify(system),
             });
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to update antigen: ${errorText}`);
+                throw new Error(`Failed to update antigen system: ${errorText}`);
             }
             return response.json();
         } catch (error) {
@@ -81,14 +78,14 @@ export const AntigenService = {
         }
     },
 
-    async delete(isbtNumber) {
+    async delete(id) {
         try {
-            const response = await fetch(`${API_URL}/${isbtNumber}`, {
+            const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to delete antigen: ${errorText}`);
+                throw new Error(`Failed to delete antigen system: ${errorText}`);
             }
         } catch (error) {
             console.error('Error in delete:', error);
