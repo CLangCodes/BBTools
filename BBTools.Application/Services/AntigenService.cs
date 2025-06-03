@@ -12,7 +12,7 @@ namespace BBTools.Application.Services
             _bbrepository = bbrepository;
         }
 
-        async Task<IEnumerable<Antigen>> IAntigenService.GetAllObjectsAsync()
+        public async Task<IEnumerable<Antigen>> GetAllObjectsAsync()
         {
             return await _bbrepository.GetAllAsync<Antigen>();
         }
