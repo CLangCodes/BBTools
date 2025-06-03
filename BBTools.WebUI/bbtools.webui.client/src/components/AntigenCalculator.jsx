@@ -123,8 +123,6 @@ function AntigenCalculator() {
                     </div>
                 </Container>
             </div>
-            
-            
 
             <h5 className="antigen-header">Select Antigens</h5>
 

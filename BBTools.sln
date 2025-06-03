@@ -12,14 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBTools.Domain", "BBTools.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBTools.Infrastructure", "BBTools.Infrastructure\BBTools.Infrastructure.csproj", "{0CA6CBFE-2062-4126-AB56-7A140B1CD2FB}"
 	ProjectSection(ProjectDependencies) = postProject
-		{F3971253-6722-47A2-BF1C-46373A760905} = {F3971253-6722-47A2-BF1C-46373A760905}
+		{71479AB6-9253-43E0-8E18-B353C272DCBF} = {71479AB6-9253-43E0-8E18-B353C272DCBF}
 	EndProjectSection
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "bbtools.webui.client", "BBTools.WebUI\bbtools.webui.client\bbtools.webui.client.esproj", "{0A4755C2-C2D4-30CC-91DE-A74DAF1C64B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBTools.WebUI.Server", "BBTools.WebUI\BBTools.WebUI.Server\BBTools.WebUI.Server.csproj", "{6FDC9C04-3BE6-4F6B-90FC-747624B9C1B1}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0CA6CBFE-2062-4126-AB56-7A140B1CD2FB} = {0CA6CBFE-2062-4126-AB56-7A140B1CD2FB}
 		{F3971253-6722-47A2-BF1C-46373A760905} = {F3971253-6722-47A2-BF1C-46373A760905}
 	EndProjectSection
 EndProject

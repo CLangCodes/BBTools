@@ -1,3 +1,7 @@
+using BBTools.Domain.Interfaces;
+using BBTools.Infrastructure.Data;
+using BBTools.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,9 +11,14 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        // Add your infrastructure services here
-        // Example: services.AddDbContext<ApplicationDbContext>(options =>
-        //     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddDbContextFactory<BBContext>(options =>
+            options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection") ?? 
+                throw new InvalidOperationException("Connection string 'DefaultConnection' not found."),
+                sqlOptions => sqlOptions.EnableRetryOnFailure()
+            ));
+
+        services.AddScoped<IRepository, BBRepository>();
 
         return services;
     }

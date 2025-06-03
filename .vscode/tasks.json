@@ -12,6 +12,15 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "BBTools.WebUI/bbtools.webui.client",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build - BBTools.WebUI/bbtools.webui.client",
+            "detail": "vite build"
         }
     ]
 }
