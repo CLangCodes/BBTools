@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BBTools.Infrastructure.Migrations
 {
     [DbContext(typeof(BBContext))]
-    [Migration("20250603205008_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250603214747_FreshStart")]
+    partial class FreshStart
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,9 +30,6 @@ namespace BBTools.Infrastructure.Migrations
                     b.Property<string>("ISBTNumber")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("AntigenSystemSystemId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -46,7 +43,7 @@ namespace BBTools.Infrastructure.Migrations
 
                     b.HasKey("ISBTNumber");
 
-                    b.HasIndex("AntigenSystemSystemId");
+                    b.HasIndex("SystemId");
 
                     b.ToTable("Antigens");
                 });
@@ -185,9 +182,13 @@ namespace BBTools.Infrastructure.Migrations
 
             modelBuilder.Entity("BBTools.Domain.Models.Antigen", b =>
                 {
-                    b.HasOne("BBTools.Domain.Models.AntigenSystem", null)
+                    b.HasOne("BBTools.Domain.Models.AntigenSystem", "AntigenSystem")
                         .WithMany("Antigens")
-                        .HasForeignKey("AntigenSystemSystemId");
+                        .HasForeignKey("SystemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AntigenSystem");
                 });
 
             modelBuilder.Entity("BBTools.Domain.Models.AntigenSystem", b =>

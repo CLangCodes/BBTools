@@ -27,9 +27,11 @@ public class BBContext : DbContext
         modelBuilder.Entity<PanelCell>()
             .HasKey(cl => new { cl.Lot, cl.PanelCellNumber} );
         
-        // Configure your entity relationships and constraints here
-        // Example:
-        // modelBuilder.Entity<YourEntity>()
-        //     .HasKey(e => e.Id);
+        // Configure Antigen-AntigenSystem relationship
+        modelBuilder.Entity<Antigen>()
+            .HasOne(a => a.AntigenSystem)
+            .WithMany(s => s.Antigens)
+            .HasForeignKey(a => a.SystemId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

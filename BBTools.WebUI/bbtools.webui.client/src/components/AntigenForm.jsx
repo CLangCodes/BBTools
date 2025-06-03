@@ -34,13 +34,17 @@ const AntigenForm = ({ open, onClose, onSave, antigen = null }) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: name === 'SystemId' ? parseInt(value) || '' : value
         }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await onSave(formData);
+        const dataToSubmit = {
+            ...formData,
+            SystemId: parseInt(formData.SystemId)
+        };
+        await onSave(dataToSubmit);
     };
 
     return (
@@ -76,6 +80,7 @@ const AntigenForm = ({ open, onClose, onSave, antigen = null }) => {
                             onChange={handleChange}
                             required
                             fullWidth
+                            inputProps={{ min: 0 }}
                         />
                         <TextField
                             name="SystemName"

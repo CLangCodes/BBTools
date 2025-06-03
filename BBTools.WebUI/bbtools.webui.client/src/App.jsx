@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavMenu from './components/NavMenu';
 import AntigenCalculator from './components/AntigenCalculator';
+import AntigenList from './components/AntigenList';
 import Home from './components/Home';
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -15,6 +16,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/antigen-calculator" element={<AntigenCalculator />} />
+                        <Route path="/antigens" element={<AntigenList />} />
                     </Routes>
                 </main>
             </div>

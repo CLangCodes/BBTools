@@ -1,11 +1,11 @@
-const API_URL = '/api/antigens';
+const API_URL = '/api/antigen';
 
 export const AntigenService = {
     async getAll() {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error || 'Failed to fetch antigens');
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch antigens: ${errorText}`);
         }
         return response.json();
     },
@@ -13,8 +13,8 @@ export const AntigenService = {
     async getById(isbtNumber) {
         const response = await fetch(`${API_URL}/${isbtNumber}`);
         if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error || 'Failed to fetch antigen');
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch antigen: ${errorText}`);
         }
         return response.json();
     },
@@ -28,8 +28,8 @@ export const AntigenService = {
             body: JSON.stringify(antigen),
         });
         if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error || 'Failed to create antigen');
+            const errorText = await response.text();
+            throw new Error(`Failed to create antigen: ${errorText}`);
         }
         return response.json();
     },
@@ -43,10 +43,9 @@ export const AntigenService = {
             body: JSON.stringify(antigen),
         });
         if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error || 'Failed to update antigen');
+            const errorText = await response.text();
+            throw new Error(`Failed to update antigen: ${errorText}`);
         }
-        return response.json();
     },
 
     async delete(isbtNumber) {
@@ -54,8 +53,8 @@ export const AntigenService = {
             method: 'DELETE',
         });
         if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error || 'Failed to delete antigen');
+            const errorText = await response.text();
+            throw new Error(`Failed to delete antigen: ${errorText}`);
         }
-    }
+    },
 }; 

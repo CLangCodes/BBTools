@@ -24,16 +24,37 @@ namespace BBTools.Application.Services
 
         public async Task CreateObjectAsync(Antigen antigen)
         {
+            // Check if antigen with same ISBTNumber already exists
+            var existingAntigen = await _bbrepository.GetObjectAsync<Antigen, string>(antigen.ISBTNumber);
+            if (existingAntigen != null)
+            {
+                throw new InvalidOperationException($"An antigen with ISBT Number '{antigen.ISBTNumber}' already exists.");
+            }
+
             await _bbrepository.CreateObjectAsync<Antigen>(antigen);
         }
 
         public async Task EditObjectAsync(Antigen antigen)
         {
+            // Check if antigen exists
+            var existingAntigen = await _bbrepository.GetObjectAsync<Antigen, string>(antigen.ISBTNumber);
+            if (existingAntigen == null)
+            {
+                throw new InvalidOperationException($"Antigen with ISBT Number '{antigen.ISBTNumber}' not found.");
+            }
+
             await _bbrepository.EditObjectAsync<Antigen>(antigen);
         }
 
         public async Task DeleteObjectAsync(Antigen antigen)
         {
+            // Check if antigen exists
+            var existingAntigen = await _bbrepository.GetObjectAsync<Antigen, string>(antigen.ISBTNumber);
+            if (existingAntigen == null)
+            {
+                throw new InvalidOperationException($"Antigen with ISBT Number '{antigen.ISBTNumber}' not found.");
+            }
+
             await _bbrepository.DeleteObjectAsync<Antigen>(antigen);
         }
     }

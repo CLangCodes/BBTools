@@ -44,6 +44,12 @@ function NavMenu() {
                                 <span>Inventory Screen</span>
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className={`nav-link ${isCollapsed ? 'collapsed' : ''}`} to="/antigens">
+                                <i className="bi bi-list-ul"></i>
+                                <span>Antigens</span>
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

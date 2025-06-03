@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BBTools.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class FreshStart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,23 +76,23 @@ namespace BBTools.Infrastructure.Migrations
                     ISBTNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SystemId = table.Column<int>(type: "int", nullable: false),
-                    SystemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AntigenSystemSystemId = table.Column<int>(type: "int", nullable: true)
+                    SystemName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Antigens", x => x.ISBTNumber);
                     table.ForeignKey(
-                        name: "FK_Antigens_AntigenSystems_AntigenSystemSystemId",
-                        column: x => x.AntigenSystemSystemId,
+                        name: "FK_Antigens_AntigenSystems_SystemId",
+                        column: x => x.SystemId,
                         principalTable: "AntigenSystems",
-                        principalColumn: "SystemId");
+                        principalColumn: "SystemId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Antigens_AntigenSystemSystemId",
+                name: "IX_Antigens_SystemId",
                 table: "Antigens",
-                column: "AntigenSystemSystemId");
+                column: "SystemId");
         }
 
         /// <inheritdoc />
