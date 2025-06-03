@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Typography, Button, Grid, Box, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import { Card, CardContent, CardActions } from '@mui/material';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(45deg,rgb(12, 48, 77) 30%,rgb(14, 76, 90) 90%)',
@@ -32,11 +34,79 @@ const Home = () => {
       </HeroSection>
 
       <Container maxWidth="lg" >
-      <Grid container spacing={4} sx={{ mt: 2 }}>
-        <Grid item xs={12} md={4}>
-          
+        <Grid container spacing={3}>
+          <Grid xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" component="h2">
+                  Antigen Systems
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Manage blood group antigen systems
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" component={Link} to="/antigen-systems">
+                  View Systems
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+
+          <Grid xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" component="h2">
+                  Antigens
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Manage individual blood group antigens
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" component={Link} to="/antigens">
+                  View Antigens
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+
+          <Grid xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" component="h2">
+                  Panel Cells
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Manage panel cells for antibody identification
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" component={Link} to="/panel-cells">
+                  View Panel Cells
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+
+          <Grid xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" component="h2">
+                  Antigen Calculator
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Calculate antigen frequencies and screening units
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" component={Link} to="/calculator">
+                  Open Calculator
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
       </Container>
 
       {/* Features Section */}
